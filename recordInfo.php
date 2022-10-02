@@ -89,6 +89,7 @@
              { 
                  echo "<p>The table 'recordFormData' does not exist, creating table now.</p>";
                  
+                 //Creates database table with the variables specifiying thier type, size and other aspects
                  $createFormDataTable = "CREATE TABLE nearMissFormData (nearMissID INT(20) AUTO_INCREMENT PRIMARY KEY, nmSiteLocation VARCHAR(100), nmRegionSubdiv VARCHAR(100), nmInSiteLocation VARCHAR(100), nmDesc VARCHAR(100), nmDateTime DATETIME,
                  imageFileName VARCHAR(100) NOT NULL, imageFiles longblob NOT NULL, caseStatus VARCHAR(15) DEFAULT 'Unresolved') ENGINE=InnoDB DEFAULT CHARSET=latin1;";
              
@@ -105,6 +106,7 @@
                  }
              }
          
+             //Gets Post data for these variables and stores it into a new variable
              $nmSiteLocation = $_POST["nmSiteLocation"];
              $nmRegionSubdiv = $_POST["nmRegionSubdiv"];
              $nmInSiteLocation = $_POST["nmInSiteLocation"];
@@ -121,7 +123,7 @@
                  $imageFileName = $_FILES["uploadedImageFile"]["name"];
                  $image = base64_encode(file_get_contents(addslashes($image)));
          
-                 //Adds information into table collumns and stores it in a variable
+                 //Adds information into table collumns and stores it in a variable and assigns values
                  $insertFormDataQuery = "INSERT INTO nearMissFormData (nmSiteLocation, nmRegionSubdiv, nmInSiteLocation, nmDesc, nmDateTime, imageFileName, imageFiles) VALUES ('$nmSiteLocation', '$nmRegionSubdiv', '$nmInSiteLocation', '$nmDesc', '$nmDateTime', '$imageFileName', '$image');";
                  $insertFormDataResult = mysqli_query($dbConn, $insertFormDataQuery);
          
@@ -135,6 +137,7 @@
                      
                      while($row = mysqli_fetch_assoc($getNearMissID))
                      {
+                        //Echo statements that call the variables in the form to use to print out in the HTML form
                          echo "<p><strong>Near-miss Entry ID: </strong>".$row["nearMissID"]."</p>";
                          echo "<p><strong>Site Location: </strong>".$row["nmSiteLocation"]."</p>";
                          echo "<p><strong>Region: </strong>".$row["nmRegionSubdiv"]."</p>";
@@ -144,6 +147,7 @@
                          echo "<p><strong>Filename of image uploaded: </strong>".$row["imageFileName"]."</p>";
                          echo "<br><strong>Feel free to return home, record another near-miss or download a copy of your reciept with the options provided below.</br><br>Thank you and have a good day.</strong></br>";
 
+                         //Stores text statements inside variables to use in the .txt file
                          $textHeader = "                                             *******************\n********************************************* Near-miss receipt **********************************************\n                                             *******************\n\n"; 
                          $recordedID = "--------------------------------------------------------------------------------------------------------------\nNear-miss Entry ID: ".$row["nearMissID"]. "\n";
                          $recordedSiteLocation = "--------------------------------------------------------------------------------------------------------------\nSite Location: ".$row["nmSiteLocation"]."\n";
@@ -155,6 +159,7 @@
                          $thankYouMessage = "\n--------------------------------------------------------------------------------------------------------------\nThank you for your Near-miss submission. We will work on deploying a solution as soon as possible.\nIf you have any queries please contact us on our email and include your near-miss entry ID.\nHave a good day.";
                          $textFileFooter = "\n--------------------------------------------------------------------------------------------------------------\n\n**************************************************************************************************************\n";
                          
+                         //This will open up a .txt file and "write" the contents from the variables above and store it into the .txt file
                          $receiptFile = fopen("nearMissReceipt.txt", 'w');
                          fwrite($receiptFile, $textHeader);
                          fwrite($receiptFile, $recordedID);
@@ -175,6 +180,7 @@
          ?>
       <div>
       <br>
+      <!--Buttons which are to allow the user to return to the home page, record another miss, or download a reciept of thier submission-->
       <button class = "receipt-button receiptHomeBtn" onclick="location.href='index.html';">Return Home</button>
       <button class = "receipt-button receiptRecordBtn" onclick="location.href='record.html';">Record Another Near-miss</button>
       <a class="receipt-button downloadReceiptBtn" download href="nearMissReceipt.txt">Download Receipt</a>
