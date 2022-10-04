@@ -46,13 +46,13 @@
                         </a>
                      </li>
                      <li>
-                           <a href="adminlogin.html">
-                              <div class="sub-menu">
-                                 <i class="bi bi-person-circle"></i>
-                                 <p class="menu-title">Admin</p>
-                              </div>
-                           </a>
-                        </li>
+                        <a href="adminlogin.html">
+                           <div class="sub-menu">
+                              <i class="bi bi-person-circle"></i>
+                              <p class="menu-title">Admin</p>
+                           </div>
+                        </a>
+                     </li>
                      <li>
                         <a href="record.html">
                            <div class="sub-menu">
@@ -90,7 +90,7 @@
                  echo "<p>The table 'recordFormData' does not exist, creating table now.</p>";
                  
                  //Creates database table with the variables specifiying thier type, size and other aspects
-                 $createFormDataTable = "CREATE TABLE nearMissFormData (nearMissID INT(20) AUTO_INCREMENT PRIMARY KEY, nmSiteLocation VARCHAR(100), nmRegionSubdiv VARCHAR(100), nmInSiteLocation VARCHAR(100), nmDesc VARCHAR(100), nmDateTime DATETIME,
+                 $createFormDataTable = "CREATE TABLE nearMissFormData (nearMissID INT(20) AUTO_INCREMENT PRIMARY KEY, nmSiteLocation VARCHAR(255), nmRegionSubdiv VARCHAR(100), nmInSiteLocation VARCHAR(100), nmDesc VARCHAR(100), nmDateTime DATETIME,
                  imageFileName VARCHAR(100) NOT NULL, imageFiles longblob NOT NULL, caseStatus VARCHAR(15) DEFAULT 'Unresolved') ENGINE=InnoDB DEFAULT CHARSET=latin1;";
              
                  //Stores connection and collumn creation query variables as paramters in a result variable
@@ -131,7 +131,7 @@
                  if (!$insertFormDataResult) {
                      echo "<p>There is an issue with adding information to the database. Try again.</p>";
                  } else {
-                     echo "<p><strong>Congratulations!</strong> Your near-miss entry has been successfully submitted! Here is the details of your reciept:</p>";
+                     echo "<p><strong>Congratulations!</strong> Your near-miss entry has been successfully submitted! Here is the details of your receipt:</p>";
                      $checkNearMissID = "SELECT * FROM `nearMissFormData` ORDER BY `nearMissID` DESC LIMIT 1";
                      $getNearMissID = mysqli_query($dbConn, $checkNearMissID);
                      
@@ -145,8 +145,8 @@
                          echo "<p><strong>Near-miss Description: </strong>".$row["nmDesc"]."</p>";
                          echo "<p><strong>Recorded Date and Time: </strong>".$row["nmDateTime"]."</p>";
                          echo "<p><strong>Filename of image uploaded: </strong>".$row["imageFileName"]."</p>";
-                         echo "<br><strong>Feel free to return home, record another near-miss or download a copy of your reciept with the options provided below.</br><br>Thank you and have a good day.</strong></br>";
-
+                         echo "<br><strong>Feel free to return home, record another near-miss or download a copy of your receipt with the options provided below.</br><br>Thank you and have a good day.</strong></br>";
+         
                          //Stores text statements inside variables to use in the .txt file
                          $textHeader = "                                             *******************\n********************************************* Near-miss receipt **********************************************\n                                             *******************\n\n"; 
                          $recordedID = "--------------------------------------------------------------------------------------------------------------\nNear-miss Entry ID: ".$row["nearMissID"]. "\n";
@@ -184,7 +184,6 @@
       <button class = "receipt-button receiptHomeBtn" onclick="location.href='index.html';">Return Home</button>
       <button class = "receipt-button receiptRecordBtn" onclick="location.href='record.html';">Record Another Near-miss</button>
       <a class="receipt-button downloadReceiptBtn" download href="nearMissReceipt.txt">Download Receipt</a>
-
    </body>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
 </html>

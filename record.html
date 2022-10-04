@@ -15,6 +15,65 @@
       <script type="text/javascript" src="xhr.js"></script>
       <script type="text/javascript" src="ajaxRecordForm.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+      <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+      <style>
+         .btn-dark {
+         height: 50px;
+         }
+         .frm-textbox {
+         width: 100%;
+         }
+         .frm-caption-title i {
+         color: black;
+         }
+         .frm-caption-title label {
+         color: black;
+         }
+         .custom-file-input::-webkit-file-upload-button {
+         visibility: hidden;
+         }
+         .custom-file-input::before {
+         content: 'SELECT FILES';
+         display: inline-block;
+         background-color: #212529;
+         border: 1px solid #999;
+         border-radius: 3px;
+         height: 50px;
+         padding: 14px 10px;
+         outline: none;
+         white-space: nowrap;
+         -webkit-user-select: none;
+         cursor: pointer;
+         font-weight: 500;
+         font-size: 0.85rem;
+         }
+         .custom-file-input:hover::before {
+         border-color: black;
+         }
+         .custom-file-input:active::before {
+         background-color: #212529;
+         }
+         /* input[name="nmRegionSubdiv"] {
+         width: 200px;
+         height: 20px;
+         padding-right: 50px;
+         } */
+         #btnTrack {
+         position: relative;
+         margin-left: -79px;
+         padding-bottom: 5px;
+         height: 40px;
+         width: 70px;
+         top: -3px;
+         border: 0;
+         -webkit-appearance: none;
+         background-color: black;
+         color: white;
+         border-radius: 5rem;
+         }
+      </style>
    </head>
    <body>
       <header>
@@ -72,78 +131,110 @@
       <!-- Navbar -->
       <!-- Background image -->
       <div class = "record-case-container">
-         <br><br><br><br>
-         <h1 style="color: white;">Record a Near-miss</h1>
-         <div class="form-group">
-            <form action="recordInfo.php" method="POST" enctype="multipart/form-data">
-               <div id = "site-location">
-                  <i class="fa-solid fa-location-dot" style="color: white;"></i>
-                  <label for="siteLocation" style="color: white;">Site Location</label>
-                  <br><input style="height:50px;font-size:14pt;" type="text" id="nmSiteLocation" name="nmSiteLocation" class = "siteLoc"
-                     placeholder="Enter Site Location..." title = "Please Enter the Site Location/Address of your Near-miss" required placeholder="Please Enter the Site Location or Address of your Near-miss"
-                     oninvalid="this.setCustomValidity('Please Enter the Site Location or Address of your Near-miss')"
-                     oninput="this.setCustomValidity('')"><br>
-                  <span id="errSiteLocation" style="color: red; display: none"></span>
+      <h1 class="our-team-section" style="padding-top: 100px; color: white;">Record a Near-miss</h1>
+      <div class="form-group">
+         <form action="recordInfo.php" method="POST" enctype="multipart/form-data">
+            <div class="frm-caption-title">
+               <!-- <i class="fa-solid fa-location-dot"></i>
+                  <label for="siteLocation">Site Location</label> -->
+               <br><input 
+                  style="height:50px;font-size:14pt;" 
+                  type="text" 
+                  id="nmSiteLocation" 
+                  name="nmSiteLocation" 
+                  class="siteLoc"
+                  placeholder="Enter Site Location..." 
+                  title = "Please Enter the Site Location/Address of your Near-miss" 
+                  required 
+                  placeholder="Please Enter the Site Location or Address of your Near-miss"
+                  oninvalid="this.setCustomValidity('Please Enter the Site Location or Address of your Near-miss')"
+                  oninput="this.setCustomValidity('')"><br>
+               <span id="errSiteLocation" style="color: red; display: none"></span>
                <div>
-               <div id="region-field">
-                  <br>
-                  <i class="fa-solid fa-location-dot" style="color: white;"></i>
-                  <label for="siteLocation" style="color: white;">Region</label>
-                  <br><input style="height:50px;font-size:14pt;" type="text" id="nmRegionSubdiv" name="nmRegionSubdiv" class="siteLoc"
-                     placeholder="Region/Subdivision (Optional)"><br>
-                  <span id="errSiteLocation" style="color: red; display: none"></span>
-                  <h1 class="status"></h1>
-                  <button class="find-geolocation" type="button">Track my Geolocation</button>
-               </div>
-               <div id="insite-location">
-                  <p></p><i class="fa-solid fa-location-dot" style="color: white;"></i>
-                  <label for="location" style="color: white;">In-Site Location</label>
-                  <br><input style="height:50px;font-size:14pt;"type="text" id="nmInSiteLocation" name="nmInSiteLocation"
-                     placeholder="Enter In-Site Location..." title = "Please Enter the Specific In-Site Location of your Near-miss" required placeholder="Please Enter the Specific In-Site Location of your Near-miss"
-                     oninvalid="this.setCustomValidity('Please Enter the Specific In-Site Location of your Near-miss')"
-                     oninput="this.setCustomValidity('')">
-               </div>
-               <div id="upload-image">
-                  <label for="uploadImage">Image of Near-miss:</label>
-                  <div id="choose-files">
-                     <input type="file" id="uploaded-image" accept="image/jpeg, image/png, image/jpg" name="uploadedImageFile"
-                        onchange=showImagePreviewBox() title = "Attach Photos/Images to your Near-miss Case" multiple required placeholder="Please Attach atleast 1 or more photos to complement your Near-miss case"
-                        oninvalid="this.setCustomValidity('Please Attach atleast 1 image/photo. Only JPEG, PNG, JPG Images are Accepted!')"
+                  <div>
+                     <!-- <br>
+                        <i class="fa-solid fa-location-dot" style="color: white;"></i>
+                        <label for="siteLocation" style="color: white;">Region</label><br> -->
+                     <br>
+                     <input style="height:50px;font-size:14pt;" 
+                        type="text" 
+                        id="nmRegionSubdiv" 
+                        name="nmRegionSubdiv" 
+                        class="siteLoc"
+                        placeholder="Region (Optional)">
+                     <button class="find-geolocation" class="btn btn-dark btn-rounded" id='btnTrack' >Detect</button>
+                     <br>
+                     <span id="errSiteLocation" style="color: red; display: none"></span>
+                  </div>
+                  <div>
+                     <!-- <p></p><label for="location" style="color: white;">In-Site Location</label> -->
+                     <br><input type="text" id="nmInSiteLocation" name="nmInSiteLocation"
+                        placeholder="Enter In-Site Location..." title = "Please Enter the Specific In-Site Location of your Near-miss" required placeholder="Please Enter the Specific In-Site Location of your Near-miss"
+                        oninvalid="this.setCustomValidity('Please Enter the Specific In-Site Location of your Near-miss')"
                         oninput="this.setCustomValidity('')">
                   </div>
-                  <br>
-                  <h3 id="image-preview-title" style="display:none">Uploaded Image Preview</h3>
-                  <div id="show-uploaded-image" style="display:none">
+                  <div id="upload-image">
+                     <label for="uploadImage">Attach Image:</label>
+                     <div id="choose-files">
+                        <input type="button" class="btn btn-dark btn-rounded" value="Capture Image" onclick="document.getElementById('uploaded-image').click();" />
+                        <input type="file" 
+                           class="custom-file-input"
+                           id="uploaded-image" 
+                           accept="image/jpeg, image/png, image/jpg" 
+                           name="uploadedImageFile"
+                           onchange=showImagePreviewBox() 
+                           title = "Attach Photos/Images to your Near-miss Case" 
+                           multiple 
+                           required 
+                           style="display: none;"
+                           placeholder="Please Attach atleast 1 or more photos to complement your Near-miss case"
+                           oninvalid="this.setCustomValidity('Please Attach atleast 1 image/photo. Only JPEG, PNG, JPG Images are Accepted!')"
+                           oninput="this.setCustomValidity('')">
+                     </div>
+                     <br>
+                     <h3 id="image-preview-title" style="display:none">Uploaded Image Preview</h3>
+                     <div id="show-uploaded-image" style="display:none">
+                     </div>
+                     <br>
                   </div>
-                  <br>
-               </div>
-               <div id = "description-field">
-                  <fieldset>
-                     <i class="fa-solid fa-note-sticky" style="color: white;"></i>
-                     <label for="description" style="color: white;">Description</label>
-                     <p style="color: white;">To use Speech-To-Text, click on "Press to Speak" then click your cursor in the description field. Press "Listening" to stop the feature.</p>
-                     <code id="result">Live Speech-Transcript Here ...</code>
-                     <button type="button" id="toggle">Press to Speak</button>
-                     <br><br>
-                     <textarea id="description" name="description" rows="4" cols="50" title = "Please Provide a Description of your Near-miss" required placeholder="Please Provide a Description of your Near-miss"
-                     oninvalid="this.setCustomValidity('Please Provide a Description of your Near-miss')"
-                     oninput="this.setCustomValidity('')"></textarea>
-                     <span id="errImage" style="color: red; display: none"></span>
-                  </fieldset>
-               </div>
-               <div id = "date-time-field">
-                  <p></p><i class="fa-solid fa-clock" style="color: white;"></i>
+                  <div>
+                     <fieldset>
+                        <h5>Fill Out Description With Speech-To-Text Recognition (Chrome Only)</h5>
+                        <p>Click 'Record Description' button then place cursor into the description field</p>
+                        <br>
+                        <div>
+                           <button type="button" id="toggle" class="btn btn-dark btn-rounded">Record description</button>
+                           <br />
+                           <br />
+                           <code id="result" class="transcriptText" >Live Speech-Transcript Here ...</code>
+                        </div>
+                        <!-- <br><br>
+                           <label for="description" style="color: white;">Description</label> -->
+                        <br>
+                        <textarea 
+                           id="description" 
+                           name="description" 
+                           rows="3" 
+                           style="width: 75%"
+                           title = "Please Provide a Description of your Near-miss" 
+                           placeholder="Please Provide a Description of your Near-miss"
+                           oninvalid="this.setCustomValidity('Please Provide a Description of your Near-miss')"
+                           oninput="this.setCustomValidity('')"></textarea>
+                     </fieldset>
+                  </div>
+                  <p></p>
+                  <i class="fa-solid fa-clock" style="color: white;"></i>
                   <label for="time" style="color: white;">Date and Time of Near-miss</label><br>
                   <label for="dateTime"></label>
                   <input type="datetime-local" id="dateTime" name="dateTime" onchange="checkForValidDate()" title = "Please Provide a Date and Time of your Near-miss" required placeholder="Please Enter the Date and Time of the Near-miss"
-                  oninvalid="this.setCustomValidity('Please Enter a valid Date and Time for your Near-miss')"
-                  oninput="this.setCustomValidity('')">
-                  <span id="errImage" style="color: red; display: none"></span>
+                     oninvalid="this.setCustomValidity('Please Enter a valid Date and Time for your Near-miss')"
+                     oninput="this.setCustomValidity('')">
                </div>
                <br>
-               <input type="submit" id = "submit" value="Submit" name = "submit">
-               <input type="reset" value="Reset">
-            </form>
+               <input type="reset" class="btn btn-outline-dark" data-mdb-ripple-color="dark"  value="Reset" >
+               <input type="submit" class="btn btn-success" id = "submit" value="Submit" name = "submit">
+               <br><br>
+         </form>
          </div>
       </div>
    </body>
@@ -152,4 +243,9 @@
    <script type="text/javascript" src="dateTimeValidation.js"></script>
    <script type="text/javascript" src="geolocationTag.js"></script>
    <script type="text/javascript" src="voiceToText.js"></script>
+   <script type="text/javascript">
+      $(function () {
+          $('#dtpickerdemo').datetimepicker();
+      });
+   </script>
 </html>

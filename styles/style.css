@@ -1,5 +1,4 @@
 body {
-    background-color: #45637d;
     text-align: center;
     height: 100%;
     margin: 0;
@@ -488,7 +487,7 @@ header {
 
 #upload-image h3{
     font-size: 18px;
-    color: rgb(255, 210, 11);
+    color: rgb(0, 0, 0);
 }
 
 /* Styling for the preview of the image uploaded */
@@ -552,9 +551,9 @@ header {
     background-color: white;
     background-position: 10px 10px; 
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 10px;
     transition: width 0.4s ease-in-out;
-    width: 80%;
+    width: 85%;
 }
 
 input[name=nmSiteLocation]
@@ -564,9 +563,9 @@ input[name=nmSiteLocation]
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 12px 12px 10px;
     transition: width 0.4s ease-in-out;
-    width: 65%;
+    width: 75%;
 }
 
 input[name=nmRegionSubdiv]:focus {
@@ -577,9 +576,9 @@ input[name=nmRegionSubdiv]:focus {
     background-color: white;
     background-position: 10px 10px;
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 10px;
     transition: width 0.4s ease-in-out;
-    width: 80%;
+    width: 85%;
 }
 
 input[name=nmRegionSubdiv] {
@@ -588,9 +587,9 @@ input[name=nmRegionSubdiv] {
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 10px;
     transition: width 0.4s ease-in-out;
-    width: 65%;
+    width: 75%;
 }
 
 input[name=nmInSiteLocation]:focus
@@ -602,9 +601,9 @@ input[name=nmInSiteLocation]:focus
     background-color: white;
     background-position: 10px 10px; 
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 10px;
     transition: width 0.4s ease-in-out;
-    width: 80%;
+    width: 85%;
 }
 
 input[name=nmInSiteLocation]
@@ -614,12 +613,10 @@ input[name=nmInSiteLocation]
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 10px;
     transition: width 0.4s ease-in-out;
-    width: 65%;
+    width: 75%;
 }
-
-
 
 input[name=description]:focus
 {
@@ -630,9 +627,9 @@ input[name=description]:focus
     background-color: white;
     background-position: 10px 10px; 
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 10px;
     transition: width 0.4s ease-in-out;
-    width: 35%;
+    width: 85%;
 }
 
 input[name=description]
@@ -642,9 +639,9 @@ input[name=description]
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 10px;
     transition: width 0.4s ease-in-out;
-    width: 30%;
+    width: 100%;
 }
 
 input[name=time]:focus
@@ -656,10 +653,11 @@ input[name=time]:focus
     background-color: white;
     background-position: 10px 10px; 
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 10px;
     transition: width 0.4s ease-in-out;
     width: 35%;
 }
+
 
 input[name=time]
 {
@@ -668,9 +666,9 @@ input[name=time]
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 10px;
     transition: width 0.4s ease-in-out;
-    width: 30%;
+    width: 100%;
 }
 
 @media screen and (max-width: 650px) {
@@ -738,13 +736,13 @@ a .download{
         display: none;
     }
     #choose-files {
-        padding-left: 5px;
+
     }
 }
 
 @media (min-width: 992px) {
     #choose-files {
-        padding-left: 100px;
+        /* padding-left: 100px; */
     }
 }
 
@@ -774,7 +772,7 @@ a .download{
 
 .receipt-text{
     padding-top: 2%;
-    color:white;
+    color:black;
     font-size: 20px;
     text-align: center;
 }
@@ -803,189 +801,19 @@ a .download{
 }
 
 
-
-
-body{
-    margin: o;
-    padding: 0%;
-    font-family: sans-serif;
-    background-color: #34495e;
+.box{
+    width: 400px;
+    padding: 50px;
+    position: absolute;
+    /* top: 50%; */
+    top: 17cm;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #191919;
+    text-align: center;
+    border-radius: 24px;
     
-    }
-    .box{
-        width: 400px;
-        padding: 50px;
-        position: absolute;
-        /* top: 50%; */
-        top: 17cm;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #191919;
-        text-align: center;
-        border-radius: 24px;
-        
-    }
-    
-    .box h1{
-        color: white;
-        text-transform: uppercase;
-        font-weight: 500;
-    }
-    .box input[type="text"]{
-        border: 0;
-        background: none;
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #3498db;
-        padding: 14px 10px ;
-        width: 200px;
-        outline: none;
-        color: white;
-        border-radius: 24px;
-        transition: 0.25s;
-    }
-    .box input[type="file"]{
-        /* border: 0;
-        background: none;
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #3498db;
-        padding: 14px 10px ;
-        width: 200px;
-        outline: none;
-        color: white;
-        border-radius: 24px;
-        transition: 0.25s; */
-        display: none;
-    } 
-    
-    /* input[type="file"] {
-        display: none;
-    } */
-    
-    .custom-file-upload {
-        border: 0;
-        background: none;
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #3498db;
-        padding: 14px 10px ;
-        width: 200px;
-        outline: none;
-        color: white;
-        border-radius: 24px;
-        transition: 0.25s;
-    }
-    
-    
-    .box input[type="datetime-local"]{
-        border: 0;
-        background: none;
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #3498db;
-        padding: 14px 10px ;
-        width: 200px;
-        outline: none;
-        color: white;
-        border-radius: 24px;
-        transition: 0.25s;
-    }
-    
-    .box textarea{
-        border: 0;
-        background: none;
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #3498db;
-        padding: 14px 10px ;
-        width: 200px;
-        outline: none;
-        color: white;
-        border-radius: 24px;
-        transition: 0.25s;
-    }
-    textarea :focus{
-        width: 280px;
-        border-color: #2ecc71;
-    }
-    .box input[type="text"]:focus{
-        width: 280px;
-        border-color: #2ecc71;
-    }
-    .box input[type="datetime-local"]:focus{
-        width: 280px;
-        border-color: #2ecc71;
-    }
-    .box input[type ="submit"]{
-        border: 0;
-        background: none;  
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #3498db;
-        padding: 14px 40px ;
-        outline: none;
-        color: white;
-        border-radius: 24px;
-        transition: 0.25s;
-    
-    }
-    
-    /* Popup container */
-    .popup {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-      }
-      
-      /* The actual popup (appears on top) */
-      .popup .popuptext {
-        visibility: hidden;
-        width: 160px;
-        background-color: #555;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 8px 0;
-        position: absolute;
-        z-index: 1;
-        bottom: 125%;
-        left: 50%;
-        margin-left: -80px;
-      }
-      
-      /* Popup arrow */
-      .popup .popuptext::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
-        border-style: solid;
-        border-color: #555 transparent transparent transparent;
-      }
-      
-      /* Toggle this class when clicking on the popup container (hide and show the popup) */
-      .popup .show {
-        visibility: visible;
-        -webkit-animation: fadeIn 1s;
-        animation: fadeIn 1s
-      }
-      
-      /* Add animation (fade in the popup) */
-      @-webkit-keyframes fadeIn {
-        from {opacity: 0;}
-        to {opacity: 1;}
-      }
-      
-      @keyframes fadeIn {
-        from {opacity: 0;}
-        to {opacity:1 ;}
-      }
+}
+.transcriptText{
+    color: #2590cf !important;
+}
