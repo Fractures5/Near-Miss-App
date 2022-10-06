@@ -72,15 +72,13 @@
          </nav>
          <!-- Navbar -->
       </header>
-      <!-- Navbar -->
-      <!-- Background image -->
       <div class = "record-case-container">
       <h1 class="our-team-section" style="padding-top: 100px; color: white;">Record a Near-miss</h1>
+      <!-- This is the form that we are using for the whole page, the application will run on this form. -->
       <div class="form-group">
+         <!-- This input field is used to gather the location of the near miss, the input field has validation to it, in case the user use a wrong format. -->
          <form action="recordInfo.php" method="POST" enctype="multipart/form-data">
             <div class="frm-caption-title">
-               <!-- <i class="fa-solid fa-location-dot"></i>
-                  <label for="siteLocation">Site Location</label> -->
                <br><input 
                   style="height:50px;font-size:14pt;" 
                   type="text" 
@@ -93,13 +91,11 @@
                   placeholder="Please Enter the Site Location or Address of your Near-miss"
                   oninvalid="this.setCustomValidity('Please Enter the Site Location or Address of your Near-miss')"
                   oninput="this.setCustomValidity('')"><br>
-               <span id="errSiteLocation" style="color: red; display: none"></span>
                <div>
                   <div>
-                     <!-- <br>
-                        <i class="fa-solid fa-location-dot" style="color: white;"></i>
-                        <label for="siteLocation" style="color: white;">Region</label><br> -->
                      <br>
+                     <!-- This input field is used to gather the region of the near miss, there is a button that will gather the location of the user and enter
+                     the region inside the input field. -->
                      <input style="height:50px;font-size:14pt;" 
                         type="text" 
                         id="nmRegionSubdiv" 
@@ -108,16 +104,18 @@
                         placeholder="Region (Optional)">
                      <button class="find-geolocation" class="btn btn-dark btn-rounded" id='btnTrack' >Detect</button>
                      <br>
-                     <span id="errSiteLocation" style="color: red; display: none"></span>
                   </div>
                   <div>
-                     <!-- <p></p><label for="location" style="color: white;">In-Site Location</label> -->
+                     <!-- This input field is being used to gather the in site location of the near miss, here the user should add the extra information about the location
+                     e.g. Level 7 room 715. -->
                      <br><input type="text" id="nmInSiteLocation" name="nmInSiteLocation"
                         placeholder="Enter In-Site Location..." title = "Please Enter the Specific In-Site Location of your Near-miss" required placeholder="Please Enter the Specific In-Site Location of your Near-miss"
                         oninvalid="this.setCustomValidity('Please Enter the Specific In-Site Location of your Near-miss')"
                         oninput="this.setCustomValidity('')">
                   </div>
                   <div id="upload-image">
+                     <!-- This field is being used to attach an image of the near miss to the form, here the user can either take a photo in the moment or they add a photo from
+                     their camera rool, or documents in case they are using from a computer. -->
                      <label for="uploadImage">Attach Image:</label>
                      <div id="choose-files">
                         <input type="button" class="btn btn-dark btn-rounded" value="Capture Image" onclick="document.getElementById('uploaded-image').click();" />
@@ -142,6 +140,8 @@
                      <br>
                   </div>
                   <div>
+                     <!-- This input field is used to gather a description of the near miss, here there is a text area that allow the user to type information or,
+                     if using chrome they can use the voice recognition and that will recognise what the user is saying and will transform into text. -->
                      <fieldset>
                         <h5>Fill Out Description With Speech-To-Text Recognition (Chrome Only)</h5>
                         <p>Click 'Record Description' button then place cursor into the description field</p>
@@ -152,8 +152,6 @@
                            <br />
                            <code id="result" class="transcriptText" >Live Speech-Transcript Here ...</code>
                         </div>
-                        <!-- <br><br>
-                           <label for="description" style="color: white;">Description</label> -->
                         <br>
                         <textarea 
                            id="description" 
@@ -166,6 +164,7 @@
                            oninput="this.setCustomValidity('')"></textarea>
                      </fieldset>
                   </div>
+                  <!-- Here there is a input field for the date and time of near misses -->
                   <p></p>
                   <i class="fa-solid fa-clock" style="color: white;"></i>
                   <label for="time" style="color: white;">Date and Time of Near-miss</label><br>
