@@ -3,7 +3,8 @@
        echo "error";
    } else {
        $id = $_GET['id'];
-       $establishCon = @mysqli_connect("cmslamp14","nearmiss", "cHz4n3armiss2022", "nearmiss");
+       require_once('connectionInfo.php');
+       $establishCon = @mysqli_connect($mysql_host,$mysql_user,$mysql_pass,$mysql_db);
    
        $updateQuery = "UPDATE `nearMissFormData` SET `caseStatus` = 'Resolved' WHERE `nearMissID` = '$id'";
        $updateData = mysqli_query($establishCon, $updateQuery);

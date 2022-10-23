@@ -75,7 +75,8 @@
       <br>
       <h1>Near-miss Receipt</h1>
       <?php
-         $dbConn = @mysqli_connect("cmslamp14","nearmiss", "cHz4n3armiss2022", "nearmiss");
+         require_once('connectionInfo.php');
+         $dbConn = @mysqli_connect($mysql_host,$mysql_user,$mysql_pass,$mysql_db);
          
          if(!$dbConn)
          {
